@@ -33,5 +33,6 @@ head(infy.hw$fitted)
 
 # Generando el plot con el pronostico suavisado con model Holt-Winters
 
+infy.forecast <- forecast(infy.hw, h=20)
 
-
+plot(infy.forecast)
