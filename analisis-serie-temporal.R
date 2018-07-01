@@ -1,6 +1,7 @@
 #Analisis serie temporal
 library(tidyverse)
 library(ggthemes)
+library(quantmod)
 
 
 #Cargando los datos bajados de https://finance.yahoo.com/ 
@@ -23,4 +24,17 @@ AMZN %>% ggplot(aes(Date, Close)) + geom_line(aes(color="amazon")) +
 
 ggsave("plots/cierre-google-amazon.png")
 
+#Usando quantmod
+
+getSymbols('AMZN')
+barChart(AMZN)
+
+#Sin indicador tecnico
+
+chartSeries(AMZN, TA= NULL)
+
+#Divergencia de Convergencia de Promedio Móvil (MACD)
+
+datos <- AMZN[,4]
+chartSeries(datos, TA= 'addMACD()')
 
